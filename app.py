@@ -15,14 +15,17 @@ def home():
 
 @app.route('/farmers')
 def farmers():
-    return render_template('farmers.html')
-
-@app.route('/testing')
-def testing():
     g.db = connect_db()
     cur = g.db.execute("SELECT * FROM farmers_list")
-    print(cur.fetchall())
+    data = cur.fetchall()
+    print(data)
+    return render_template('farmers.html', farmers=data)
+
+#ignore all of this, it is just testing.
+@app.route('/testing')
+def testing():
     return render_template('testing.html')
+###
 
 if __name__ == '__main__':
     app.run(debug=True)

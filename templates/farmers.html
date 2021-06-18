@@ -2,7 +2,20 @@
     <head>
 
     </head>
+
     <body>
-        <h1>HI</h1>
+        {% for farmer in farmers %}
+            <p>id: {{ farmer[0] }}</p>
+            <p>first name: {{ farmer[1] }}</p>
+            <p>last name: {{ farmer[2] }}</p>
+            <p>age: {{ farmer[3] }}</p>
+            <p>email: {{ farmer[4] }}</p>
+            <p>phone number: {{ farmer[5] }}</p>
+            <p>plants: {{ farmer[6] }}</p>
+            <p>seeds: {{ farmer[7] }}</p>
+            <p>tools: {{ farmer[8] }}</p>
+            <p>chemicals: {{ farmer [9] }}</p>
+            <p>--</p>
+        {% endfor %}
     </body>
 </html>
