@@ -5,7 +5,7 @@ with sqlite3.connect("farmers.db") as connection:
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS farmers_list(
-            id PRIMARY KEY AUTOINCREMENT,
+            farmer_id PRIMARY KEY AUTOINCREMENT,
             first_name TEXT,
             last_name TEXT,
             age INT,
@@ -22,9 +22,19 @@ with sqlite3.connect("farmers.db") as connection:
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS logins(
-            id TEXT,
+            farmer_id TEXT,
             username TEXT,
             password TEXT
+        )
+        '''
+    )
+
+    c.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS needs(
+            need_id PRIMARY KEY AUTOINCREMENT
+            need_text TEXT
+            farmer_id TEXT
         )
         '''
     )
