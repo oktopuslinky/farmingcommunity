@@ -36,6 +36,10 @@ def needs():
     print(data)
     return render_template('needs.html', needs=data)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
 #ignore all of this, it is just testing.
 @app.route('/testing')
 def testing():

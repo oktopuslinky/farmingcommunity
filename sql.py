@@ -19,11 +19,12 @@ with sqlite3.connect("farmers.db") as connection:
         '''
     );
 
+    #c.execute('DELETE FROM logins')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS logins(
             farmer_id TEXT,
-            username TEXT,
+            email TEXT,
             password TEXT
         )
         '''
