@@ -1,6 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g, jsonify
 import sqlite3, cgi, cgitb, json
 
+
+'''
+TODO:
+- handle logins
+- give needs data
+'''
+
 app = Flask(__name__)
 
 app.database='farmers.db'
@@ -20,6 +27,14 @@ def farmers():
     data = cur.fetchall()
     print(data)
     return render_template('farmers.html', farmers=data)
+
+@app.route('/needs')
+def needs():
+    g.db = connect_db()
+    cur = g.db.execute("SELECT * FROM needs")
+    data = cur.fetchall()
+    print(data)
+    return render_template('needs.html', needs=data)
 
 #ignore all of this, it is just testing.
 @app.route('/testing')

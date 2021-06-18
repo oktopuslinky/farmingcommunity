@@ -41,8 +41,19 @@ with sqlite3.connect("farmers.db") as connection:
 
     c.execute(
         '''
+        INSERT INTO needs(need_text, farmer_id) VALUES(
+            "need some tomato seeds",
+            "1"
+        )
+        '''
+    )
+
+    """
+    c.execute(
+        '''
         INSERT INTO farmers_list(first_name, last_name, age, email, phone_number, plants, seeds, tools, chemicals) VALUES(
             "John", "Smith", 42, "johnsmith@hotmail.com", 1234567, "tomato", "eggplant(15)", "shovel", "pesticide"
         )
         '''
     );
+    """
