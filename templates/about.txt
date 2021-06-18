@@ -1,1 +1,6 @@
 This folder contains all of the templates (html webpages)
+
+HOW TO ADD IMAGES:
+{{ url_for('static', filename='IMAGENAME.png') }}
+
+^^images go in the static folder
