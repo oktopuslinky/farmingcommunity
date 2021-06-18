@@ -5,7 +5,7 @@ with sqlite3.connect("farmers.db") as connection:
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS farmers_list(
-            farmer_id PRIMARY KEY AUTOINCREMENT,
+            farmer_id INTEGER PRIMARY KEY AUTOINCREMENT,
             first_name TEXT,
             last_name TEXT,
             age INT,
@@ -17,7 +17,7 @@ with sqlite3.connect("farmers.db") as connection:
             chemicals TEXT
         )
         '''
-    )
+    );
 
     c.execute(
         '''
@@ -27,14 +27,22 @@ with sqlite3.connect("farmers.db") as connection:
             password TEXT
         )
         '''
-    )
+    );
 
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS needs(
-            need_id PRIMARY KEY AUTOINCREMENT
-            need_text TEXT
+            need_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            need_text TEXT,
             farmer_id TEXT
         )
         '''
-    )
+    );
+
+    c.execute(
+        '''
+        INSERT INTO farmers_list(first_name, last_name, age, email, phone_number, plants, seeds, tools, chemicals) VALUES(
+            "John", "Smith", 42, "johnsmith@hotmail.com", 1234567, "tomato", "eggplant(15)", "shovel", "pesticide"
+        )
+        '''
+    );
