@@ -1,0 +1,67 @@
+*{
+    background-image: url('https://wallpapercave.com/wp/wp4021632.jpg');
+}
+.front h1{
+    background: rgb(28, 196, 92);
+}
+.front p{
+    background: rgb(28, 196, 92);
+}
+.back h1, p{
+    background: rgb(100, 227, 231);
+}
+.container{
+    width: 100%;
+    height: 100;
+}
+.card-container{
+    width: 200px;
+    height: 300px;
+    display: flex;
+    padding: 20px 10px 20px 10px;
+}
+.card{
+    width: 200%;
+    height: 90%;
+    transition: 1s ease-in-out;
+    transform-style: preserve-3d;
+
+}
+.card-container:hover .card{
+    transform: rotateY(180deg);
+}
+.card .front{
+    background: rgb(28, 196, 92);
+    color: black;
+    text-align: center;
+}
+.card .back{
+    background: rgb(100, 227, 231);
+    color: black;    
+    transform: rotateY(180deg);
+}
+.card div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.container .card-container img{
+	width: 80px;
+	height: 80px;
+    justify-content: center;
+    margin: 0px;
+}
+
+/* .container .card-container .plants{
+	font-size: 20px;
+	line-height: 24px;
+    padding-top: 15px;
+	color: #02df32;
+} */
