@@ -34,11 +34,13 @@
     background: rgb(28, 196, 92);
     color: black;
     text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .card .back{
     background: rgb(100, 227, 231);
     color: black;    
     transform: rotateY(180deg);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .card div{
     width: 100%;
