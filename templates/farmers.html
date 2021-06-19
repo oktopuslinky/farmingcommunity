@@ -67,10 +67,9 @@
         <div class="card_item">
             <div class="card_inner">
                 <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
-                <div class="name">Black Panther</div>
+                <div class="name">{{ farmer[1] }} {{ farmer[2] }}</div>
                 <div class="age">{{ farmer[3] }}</div>
-                <div class="contact">Chadwick Boseman</div>
-                <div class="film">Plants: {{ farmer[6]|upper }} </div>
+                <div class="plants">Plants: {{ farmer[6]|upper }} </div>
             </div>
         </div>
         {% endfor %}
