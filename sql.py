@@ -2,6 +2,7 @@ import sqlite3
 with sqlite3.connect("farmers.db") as connection:
     c = connection.cursor()
 
+    #c.execute('DROP TABLE farmers_list')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS farmers_list(
@@ -19,11 +20,12 @@ with sqlite3.connect("farmers.db") as connection:
         '''
     );
 
-    #c.execute('DELETE FROM logins')
+    #c.execute('INSERT INTO logins VALUES("1", "johnsmith@hotmail.com", "admin")');
+    #c.execute('DROP TABLE logins')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS logins(
-            farmer_id TEXT,
+            farmer_id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT,
             password TEXT
         )
@@ -40,6 +42,7 @@ with sqlite3.connect("farmers.db") as connection:
         '''
     );
 
+    """
     c.execute(
         '''
         INSERT INTO needs(need_text, farmer_id) VALUES(
@@ -48,7 +51,7 @@ with sqlite3.connect("farmers.db") as connection:
         )
         '''
     )
-
+    """
     """
     c.execute(
         '''
