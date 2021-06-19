@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g, jsonify
+from functools import wraps
 import sqlite3, cgi, cgitb, json
 
 '''
@@ -12,6 +13,17 @@ app = Flask(__name__)
 app.database='farmers.db'
 
 app.secret_key = "opfasidn43rw908c"
+
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrap
+
 def connect_db():
     return sqlite3.connect(app.database)
 
@@ -39,24 +51,32 @@ def needs():
     print(data)
     return render_template('needs.html', needs=data)
 
+@app.route('/createneed', methods=['GET', 'POST'])
+def createneed():
+    if request.method == 'POST':
+        g.db = connect_db()
+        cur = g.db.execute("SELECT * FROM needs")
+        data = cur.fetchall()
+        print(data)
+        g.db.execute(
+            '''
+            INSERT INTO needs(need_text, farmer_id)
+            VALUES(?,?)
+            ''', [request.form['need_text'], session['id']]
+        )
+        g.db.commit()
+        print(request.form['need_text'], session['id'])
+        return redirect(url_for('dashboard'))
+    
+    return render_template('createneed.html')
+
+
 #for flask to domain connection
 # https://towardsdatascience.com/how-to-deploy-your-website-to-a-custom-domain-8cb23063c1ff
 
 #while this works, you should do this:
 # https://flask-login.readthedocs.io/en/latest/
 # https://medium.com/analytics-vidhya/how-to-use-flask-login-with-sqlite3-9891b3248324
-
-'''
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash('You need to log in first.')
-            return redirect(url_for('login'))
-    return wrap
-'''
 
 
 
@@ -88,9 +108,10 @@ def login():
             return redirect(url_for('dashboard'))
 
     return render_template('login.html', error=error)
-    
+
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
@@ -115,7 +136,7 @@ def register():
         
         if user_exists:
             flash('This user already exists in the system. Try logging in.')
-            return render_template('login.html')
+            return redirect(url_for('login'))
 
         else:
             print("received data")
@@ -157,7 +178,7 @@ def register():
             the_data = the_cur.fetchall()
             print(the_data)
 
-            return render_template('login.html')
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
