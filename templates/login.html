@@ -1,23 +1,20 @@
-<html>
-    <head>
+{% extends 'base.html' %}
 
-    </head>
+{% block content %}
+    <!--INSERT PAGE CONTENT HERE-->
+    <form action="/login" method="POST">
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
-    <body>
-        <form action="/login" method="POST">
-            <label for="email"><b>Email</b></label>
-            <input type="email" placeholder="Enter Email" name="email" id="email" required>
+        <label for="pw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-            <label for="pw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
-            <input type="submit" value="Login">
-        </form>
-        <p>Don't have an account? <a href='/register'>Register for one today!</a></p>
-        {% if error %}
-            <p><b>The email or password is incorrect. Please try again.</b></p>
-            
-        {% endif %}
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href='/register'>Register for one today!</a></p>
+    
+    {% if error %}
+        <p><b>The email or password is incorrect. Please try again.</b></p>
         <!--TODO: MAKE REMEMBER ME BUTTON-->
-    </body>
-</html>
+    {% endif %}
+{% endblock %}

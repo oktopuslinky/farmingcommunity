@@ -1,13 +1,10 @@
-<html>
-    <head>
+{% extends 'base.html' %}
 
-    </head>
-
-    <body>
-        {% for need in needs %}
-            <p>need id: {{ need[0] }}</p>
-            <p>need text: {{ need[1] }}</p>
-            <p>farmer id: {{ need[2] }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% block content %}
+    <!--INSERT PAGE CONTENT HERE-->
+    {% for need in needs %}
+        <p>need id: {{ need[0] }}</p>
+        <p>need text: {{ need[1] }}</p>
+        <p>farmer id: {{ need[2] }}</p>
+    {% endfor %}
+{% endblock %}

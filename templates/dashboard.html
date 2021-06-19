@@ -1,10 +1,8 @@
-<html>
-    <head>
+{% extends 'base.html' %}
 
-    </head>
-    <body>
-        <p style="font-family:verdana;">You are now logged in and currently in the dashboard</p>
-        <a href='/createneed'><button>Create a Need</button></a>
-        <button>Check your stats</button>
-    </body>
-</html>
+{% block content %}
+    <!--INSERT PAGE CONTENT HERE-->
+    <p style="font-family:verdana;">You are now logged in and currently in the dashboard</p>
+    <a href='/createneed'><button>Create a Need</button></a>
+    <button>Check your stats</button>
+{% endblock %}

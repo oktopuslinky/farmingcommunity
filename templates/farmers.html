@@ -1,75 +1,33 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/farmers.css">
-
-</head>
-<style></style>
-</style>
-
-<body>
-    <!-- <div id="items" class="my-4">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Sl. No</th> 0
-                    <th scope="col">First Name</th> 1
-                    <th scope="col">Last Name</th> 2
-                    <th scope="col">Age</th> 3
-                    <th scope="col">Email ID</th> 4
-                    <th scope="col">Contact Number</th> 5
-                    <th scope="col">Plants</th> 6
-                    <th scope="col">Seeds</th> 7
-                    <th scope="col">Tools</th> 8
-                    <th scope="col">Chemicals</th> 9
-                </tr>
-            </thead>
-            {% for farmer in farmers %}
-            <tbody id="tableBody">
-                <tr>
-                    <th scope="row">{{ farmer[0] }}</th>
-                    <td>{{ farmer[1] }}</td>
-                    <td>{{ farmer[2] }}</td>
-                    <td>{{ farmer[3] }}</td>
-                    <td>{{ farmer[4] }}</td>
-                    <td>{{ farmer[5] }}</td>
-                    <td>{{ farmer[6] }}</td>
-                    <td>{{ farmer[7] }}</td>
-                    <td>{{ farmer[8] }}</td>
-                    <td>{{ farmer[9] }}</td>
-                    <td>{{ farmer[10] }}</td>
-                </tr>
-            </tbody>
-            {% endfor %}
-        </table>
-    </div> -->
+{% block content %}
+    <!--INSERT PAGE CONTENT HERE-->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="static/farmers.css">
+    </head>>
 
     <div class="container">
         {% for farmer in farmers %}
-        <div class="card-container">
-            <div class="card" id="{{ farmer[0] }}">
-                <div class="front">
-                    <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
-                    <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
-                    <h1>Age: {{ farmer[3] }}</h1>
-                    <p>Plants: {{ farmer[6]|upper }} </p>
-                </div>
-                <div class="back">
-                    <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
-                    <p>{{ farmer[4] }}</p>
-                    <p>Phone: {{ farmer[5] }}</p>
-                    <p>Tools: {{ farmer[8] }}</p>
-                    <p>Chemicals: {{ farmer[9] }}</p>
+            <div class="card-container">
+                <div class="card" id="{{ farmer[0] }}">
+                    <div class="front">
+                        <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
+                        <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
+                        <h1>Age: {{ farmer[3] }}</h1>
+                        <p>Plants: {{ farmer[6]|upper }} </p>
+                    </div>
+                    <div class="back">
+                        <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
+                        <p>{{ farmer[4] }}</p>
+                        <p>Phone: {{ farmer[5] }}</p>
+                        <p>Tools: {{ farmer[8] }}</p>
+                        <p>Chemicals: {{ farmer[9] }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
         {% endfor %}
-
-</body>
-
-</html>
+    </div>
+{% endblock %}
