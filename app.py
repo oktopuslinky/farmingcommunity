@@ -39,6 +39,26 @@ def needs():
     print(data)
     return render_template('needs.html', needs=data)
 
+@app.route('/createneed', methods=['GET', 'POST'])
+def createneed():
+    if request.method == 'POST':
+        g.db = connect_db()
+        cur = g.db.execute("SELECT * FROM needs")
+        data = cur.fetchall()
+        print(data)
+        g.db.execute(
+            '''
+            INSERT INTO needs(need_text, farmer_id)
+            VALUES(?,?)
+            ''', [request.form['need_text'], session['id']]
+        )
+        g.db.commit()
+        print(request.form['need_text'], session['id'])
+        return redirect(url_for('dashboard'))
+    
+    return render_template('createneed.html')
+
+
 #for flask to domain connection
 # https://towardsdatascience.com/how-to-deploy-your-website-to-a-custom-domain-8cb23063c1ff
 
@@ -54,7 +74,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash('You need to log in first.')
-            return redirect(url_for('login'))
+            return redirect(url_for('login.html'))
     return wrap
 '''
 
@@ -115,7 +135,7 @@ def register():
         
         if user_exists:
             flash('This user already exists in the system. Try logging in.')
-            return render_template('login.html')
+            return redirect(url_for('login'))
 
         else:
             print("received data")
@@ -157,7 +177,7 @@ def register():
             the_data = the_cur.fetchall()
             print(the_data)
 
-            return render_template('login.html')
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
