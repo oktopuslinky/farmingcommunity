@@ -1,8 +1,45 @@
 <html>
     <head>
-        <
+        
     </head>
     <body>
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+        
+        <h1>Register for an Account</h1>
+        <form action='/register', method='POST'>
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name">
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name">
 
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age">
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+
+            <label for="phone_number">Phone Number:</label>
+            <input type="tel" id="phone_number" name="phone_number">
+            
+            <label for="plants">Plants:</label>
+            <input type="text" id="plants" name="plants">
+
+            <label for="seeds">Seeds:</label>
+            <input type="text" id="seeds" name="seeds">
+
+            <label for="tools">Tools:</label>
+            <input type="text" id="tools" name="tools">
+
+            <label for="chemicals">Chemicals:</label>
+            <input type="text" id="chemicals" name="chemicals">
+
+            <input type="submit" value="Register">
+        </form>
     </body>
-</html>
+</html> 
