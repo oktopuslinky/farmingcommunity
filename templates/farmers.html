@@ -16,16 +16,16 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Sl. No</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Email ID</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Plants</th>
-                    <th scope="col">Seeds</th>
-                    <th scope="col">Tools</th>
-                    <th scope="col">Chemicals</th>
+                    <th scope="col">Sl. No</th> 0
+                    <th scope="col">First Name</th> 1
+                    <th scope="col">Last Name</th> 2
+                    <th scope="col">Age</th> 3
+                    <th scope="col">Email ID</th> 4
+                    <th scope="col">Contact Number</th> 5
+                    <th scope="col">Plants</th> 6
+                    <th scope="col">Seeds</th> 7
+                    <th scope="col">Tools</th> 8
+                    <th scope="col">Chemicals</th> 9
                 </tr>
             </thead>
             {% for farmer in farmers %}
@@ -47,36 +47,27 @@
             {% endfor %}
         </table>
     </div> -->
-    <!--<div class="row"></div>-->
-    <!-- {% for farmer in farmers %}
+
     <div class="container">
-        <div class="article">
-            <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg"
-                style="width:150px;height:auto;padding-top:10px">
-            <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
-            <p class="title">{{ farmer[3]|upper }}</p>
-            <p>{{ farmer[6]|upper }}</p>
-            <p>{{ farmer[4] }}</p>
-            <p><button>Details</button></p>
-        </div>
-    </div> 
-    {% endfor %} -->
-    <!--</div>-->
-    <div class="cards">
         {% for farmer in farmers %}
-        <div class="card_item">
-            <div class="card_front">
-                <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
-                <div class="name">{{ farmer[1] }} {{ farmer[2] }}</div>
-                <div class="age">{{ farmer[3] }}</div>
-                <div class="plants">Plants: {{ farmer[6]|upper }} </div>
-            </div>
-            <div class="card_back">
-                <h1>John Doe</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
+        <div class="card-container">
+            <div class="card">
+                <div class="front">
+                    <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
+                    <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
+                    <h1>{{ farmer[3] }}</h1>
+                    <p>Plants: {{ farmer[6]|upper }} </p>
+                </div>
+                <div class="back">
+                    <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
+                    <p>{{ farmer[4] }}</p>
+                    <p>{{ farmer[5] }}</p>
+                    <p>{{ farmer[8] }}</p>
+                    <p>{{ farmer[9] }}</p>
+                </div>
             </div>
         </div>
+
         {% endfor %}
 
 </body>
