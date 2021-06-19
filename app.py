@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g, jsonify
+from functools import wraps
 import sqlite3, cgi, cgitb, json
 
 '''
@@ -12,6 +13,17 @@ app = Flask(__name__)
 app.database='farmers.db'
 
 app.secret_key = "opfasidn43rw908c"
+
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrap
+
 def connect_db():
     return sqlite3.connect(app.database)
 
@@ -66,18 +78,6 @@ def createneed():
 # https://flask-login.readthedocs.io/en/latest/
 # https://medium.com/analytics-vidhya/how-to-use-flask-login-with-sqlite3-9891b3248324
 
-'''
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash('You need to log in first.')
-            return redirect(url_for('login.html'))
-    return wrap
-'''
-
 
 
 #need to make "welcome, {{name}}"
@@ -108,9 +108,10 @@ def login():
             return redirect(url_for('dashboard'))
 
     return render_template('login.html', error=error)
-    
+
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
@@ -189,5 +190,6 @@ def testing():
     return render_template('testing.html')
 ###
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def create_app():
+    if __name__ == '__main__':
+        app.run(debug=True)
