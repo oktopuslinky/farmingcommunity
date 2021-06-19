@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g, jsonify
 from functools import wraps
-import sqlite3, cgi, cgitb, json
+import sqlite3, cgi, cgitb, json, os
 
 '''
 TODO:
@@ -192,4 +192,5 @@ def testing():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
