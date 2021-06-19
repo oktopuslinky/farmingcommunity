@@ -1,21 +1,138 @@
+<!DOCTYPE html>
 <html>
-    <head>
 
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
 
-    <body>
-        {% for farmer in farmers %}
-            <p>id: {{ farmer[0] }}</p>
-            <p>first name: {{ farmer[1] }}</p>
-            <p>last name: {{ farmer[2] }}</p>
-            <p>age: {{ farmer[3] }}</p>
-            <p>email: {{ farmer[4] }}</p>
-            <p>phone number: {{ farmer[5] }}</p>
-            <p>plants: {{ farmer[6] }}</p>
-            <p>seeds: {{ farmer[7] }}</p>
-            <p>tools: {{ farmer[8] }}</p>
-            <p>chemicals: {{ farmer [9] }}</p>
-            <p>--</p>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url('https://i.pinimg.com/originals/bc/e5/d5/bce5d50f3d8388fe8454be7c8dc38106.jpg');
+    }
+
+    .column {
+        width: 25%;
+        float: left;
+        padding: 100px 10px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+
+
+    @media screen and (max-width:600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        background-color: white;
+        text-align: center;
+        border-radius: 40px;
+        padding-bottom: 15px;
+    }
+
+    .title {
+        color: gray;
+        font-size: 18px;
+    }
+
+    button {
+        border: none;
+        padding: 8px;
+        display: inline-block;
+        color: white;
+        background-color: black;
+        cursor: pointer;
+        width: 70%;
+        border-radius: 20px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
+
+    a:hover,
+    button:hover {
+        opacity: 0.6;
+    }
+</style>
+
+<body>
+    <!-- <div id="items" class="my-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sl. No</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Plants</th>
+                    <th scope="col">Seeds</th>
+                    <th scope="col">Tools</th>
+                    <th scope="col">Chemicals</th>
+                </tr>
+            </thead>
+            {% for farmer in farmers %}
+            <tbody id="tableBody">
+                <tr>
+                    <th scope="row">{{ farmer[0] }}</th>
+                    <td>{{ farmer[1] }}</td>
+                    <td>{{ farmer[2] }}</td>
+                    <td>{{ farmer[3] }}</td>
+                    <td>{{ farmer[4] }}</td>
+                    <td>{{ farmer[5] }}</td>
+                    <td>{{ farmer[6] }}</td>
+                    <td>{{ farmer[7] }}</td>
+                    <td>{{ farmer[8] }}</td>
+                    <td>{{ farmer[9] }}</td>
+                    <td>{{ farmer[10] }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div> -->
+    <div class="row">
+        <div class="column">
+            {% for farmer in farmers %}
+
+            <div class="card">
+                <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg"
+                    style="width:150px;height:auto;padding-top:10px">
+                <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
+                <p class="title">{{ farmer[3]|upper }}</p>
+                <p>{{ farmer[6]|upper }}</p>
+                <p>{{ farmer[4] }}</p>
+                <p><button>Details</button></p>
+            </div>
+        </div>
         {% endfor %}
-    </body>
+    </div>
+
+</body>
+
 </html>
