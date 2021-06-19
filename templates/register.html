@@ -3,10 +3,6 @@
         
     </head>
     <body>
-        {% for message in get_flashed_messages() %}
-            {{ message }}
-        {% endfor %}
-        
         <h1>Register for an Account</h1>
         <form action='/register', method='POST'>
             <label for="first_name">First Name:</label>
