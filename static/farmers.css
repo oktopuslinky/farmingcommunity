@@ -1,5 +1,11 @@
+/*
 *{
     background-image: url('https://wallpapercave.com/wp/wp4021632.jpg');
+}
+*/
+
+body{
+    background-color:lightgray;
 }
 .front h1{
     background: rgb(28, 196, 92);
