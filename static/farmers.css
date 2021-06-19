@@ -104,10 +104,13 @@
 
 body{
 	background: #70daa8;
+    align-items: center;
+}
+.card_item:hover {
+    opacity: .5;
 }
 
-
-.cards_wrap{
+.cards{
 	padding: 20px;
 	width: 100%;
 	display: flex;
@@ -115,12 +118,12 @@ body{
 	flex-wrap: wrap;
 }
 
-.cards_wrap .card_item{
+.cards .card_item{
 	padding: 15px 25px;
 	width: 25%;
 }
 
-.cards_wrap .card_inner{
+.cards .card_front{
 	background: #fff;
 	border-radius: 5px;
 	padding: 35px 20px;
@@ -130,13 +133,13 @@ body{
 	width: 100%;
 }
 
-.cards_wrap .card_item img{
+.cards .card_item img{
 	width: 80px;
 	height: 80px;
 	margin-bottom: 5px;
 }
 
-.cards_wrap .card_item .name, .age{
+.cards .card_item .name, .age{
 	color: #6ae366;
 	font-weight: 999;
 	letter-spacing: 2px;
@@ -148,7 +151,7 @@ body{
     padding-top: 20px;
 }
 
-/* .cards_wrap .card_item .contact{
+/* .cards .card_item .contact{
 	color: #b6c0c2;
 	font-size: 15px;
 	font-weight: 100;
@@ -156,7 +159,7 @@ body{
 } */
 
 
-.cards_wrap .card_item .plants{
+.cards .card_item .plants{
 	font-size: 20px;
 	line-height: 24px;
     padding-top: 15px;
@@ -164,13 +167,13 @@ body{
 }
 
 @media screen and (max-width: 1024px){
-	.cards_wrap .card_item{
+	.cards .card_item{
 		width: 33%;
 	}
 }
 
 @media screen and (max-width: 768px){
-	.cards_wrap .card_item{
+	.cards .card_item{
 		width: 50%;
 	}
 	.wrapper .header{
@@ -180,7 +183,7 @@ body{
 }
 
 @media screen and (max-width: 568px){
-	.cards_wrap .card_item{
+	.cards .card_item{
 		width: 100%;
 	}
 	.wrapper .header{

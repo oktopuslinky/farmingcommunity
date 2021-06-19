@@ -62,14 +62,19 @@
     </div> 
     {% endfor %} -->
     <!--</div>-->
-    <div class="cards_wrap">
+    <div class="cards">
         {% for farmer in farmers %}
         <div class="card_item">
-            <div class="card_inner">
+            <div class="card_front">
                 <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
                 <div class="name">{{ farmer[1] }} {{ farmer[2] }}</div>
                 <div class="age">{{ farmer[3] }}</div>
                 <div class="plants">Plants: {{ farmer[6]|upper }} </div>
+            </div>
+            <div class="card_back">
+                <h1>John Doe</h1>
+                <p>Architect & Engineer</p>
+                <p>We love that guy</p>
             </div>
         </div>
         {% endfor %}
