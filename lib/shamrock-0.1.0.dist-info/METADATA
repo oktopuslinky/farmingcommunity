@@ -1,0 +1,138 @@
+Metadata-Version: 2.1
+Name: shamrock
+Version: 0.1.0
+Summary: A Trefle API Integration.
+Home-page: https://github.com/zmasek/shamrock
+Author: Zlatko Mašek
+Author-email: zlatko.masek@gmail.com
+License: MIT license': 'License :: OSI Approved :: MIT License
+Keywords: shamrock
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: requests (==2.21.0)
+
+===============================
+Shamrock - A Trefle API Library
+===============================
+
+.. image:: https://coveralls.io/repos/github/zmasek/shamrock/badge.svg?branch=master
+   :target: https://coveralls.io/github/zmasek/shamrock?branch=master
+   :alt: Coverage Status
+
+.. image:: https://readthedocs.org/projects/shamrock/badge/?version=latest
+    :target: https://shamrock.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+☘ **Shamrock** is a Python shallow API library for `Trefle <https://trefle.io/>`_ integration. It
+enables interacting with the Trefle plants API in Python to get the information needed for various
+things you might want to use the API with such as research, gardening software, automation, etc. It
+is made for use with Python 3.6 and above.
+
+For the full documentation refer to
+`Shamrock documentation <https://shamrock.readthedocs.io/en/latest/>`_.
+
+For more information what the Trefle service provides, refer to the
+`Trefle API documentation <https://trefle.io/reference>`_. It is also useful for checking out how to
+use the API with Shamrock library.
+
+Installation
+------------
+::
+
+    pipenv install shamrock
+
+or ::
+
+    pip install shamrock
+
+Simple Usage Example
+--------------------
+::
+
+    from shamrock import Shamrock
+    api = Shamrock('mytoken')
+    species = api.species()
+
+
+Advanced Usage
+--------------
+
+You can configure the API initially like this::
+
+    api = Shamrock(TOKEN)
+
+Methods that can be run with the API are::
+
+    api.kingdoms()
+    api.subkingdoms()
+    api.divisions()
+    api.division_classes()
+    api.division_orders()
+    api.families()
+    api.genus()
+    api.plants()
+    api.species()
+
+They correspond to the Trefle API endpoints.
+
+You can also query a specific item from the database::
+
+    api.plants(103505)
+
+Searching is covered with a separate method::
+
+    api.search("tomato")
+
+Navigating the API is covered with these methods::
+
+    api.next()
+    api.prev()
+    api.first()
+    api.last()
+
+It will work only if you previously made a request. For example::
+
+    api.species()
+    api.next()
+
+You can also use the varoius query string options described on Trefle API documentation as keyword
+arguments in methods, however, be careful when unpacking filters, for example::
+
+    filters = {"filter[common_name]" : "blackwood"}
+    api.species(**filters)
+
+
+=======
+History
+=======
+
+0.0.1 (27.04.2019.)
+-------------------
+
+* First release on PyPI.
+
+0.0.2 (21.07.2020.)
+-------------------
+
+* Trefle.io changed so this release retains links to an old version that is to be removed.
+
+0.1.0 (22.07.2020.)
+-------------------
+
+* Trefle.io updated so these things were changed:
+    * Authorization is now handled through query parameter, copy module needed, new query_parameters property added and removed headers property.
+    * Pagination handled through links in the body and made relative instead of absolute. No more page size.
+    * Gzip response needed to unwrap the JSON response now. Will remove this in the future versions.
+    * New bascic endpoints added for division classes, division orders and distributions.
+    * Added new methods for client-side auth, selecting plants by distributions or genus, submitting errors and corrections.
+    * Genuses endpoint renamed to genus.
+    * Versioning of the API started so the url parameter in the constructor is split to base and relative urls.
+    * Response changed to handle the added meta and links additions for the navigation.
+* Added ShamrockException wrapper for the low level library exceptions.
+
+
