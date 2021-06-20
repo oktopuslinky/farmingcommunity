@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="static/createneed.css">
-</head>
+{% block content %}
 
-<body>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="static/createneed.css">
+    </head>
+
     <div class="center">
-        <h1>Add A Need To Your List!</h1>
-        <form method="post">
+        <h1 style='margin: 0px 10px 0px 10px'>Add A Need To Your List!</h1>
+        <form action="/createneed" method="POST">
             <div class="txt_field">
-                <input type="text" required>
+                <input type="text" name='need_text' required>
                 <span></span>
                 <label>Need</label>
             </div>
@@ -19,7 +20,4 @@
         </form>
     </div>
 
-</body>
-
-</html>
-
+{% endblock %}
