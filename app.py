@@ -181,15 +181,16 @@ def login():
             g.db = connect_db()
             cur = g.db.execute('SELECT * FROM logins')
             data = cur.fetchall()
-            print(data)
+            print("the data:", data)
             login_valid = False
             farmer_id = None
 
             for farmer in data:
+                print("email form", request.form['email'])
                 if farmer[1] == request.form['email'] and farmer[2] == request.form['password']:
                     login_valid = True
                     farmer_id = farmer[0]
-                    print(farmer_id)
+                    print("the farmer id:", farmer_id)
 
             if login_valid is False:
                 #if login incorrect
