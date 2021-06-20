@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends 'base.html' %}
 
 {% block content %}
@@ -9,12 +11,10 @@
         <link rel="stylesheet" href="static/farmers.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
-
+<body>
     <div class="container">
         {% for farmer in farmers %}
-
-            
-
+        
             <div id="info{{ farmer[0] }}" class='info'>
                 <p>E-Mail: {{ farmer[4] }}</p>
                 <p>Phone Number: {{ farmer[5] }}</p>
@@ -24,7 +24,6 @@
                 <p>Chemicals: {{ farmer[9] }}</p>
             </div>
             <script>
-                console.log('hello')
                 $('#info{{ farmer[0] }}').hide();
             </script>
             <div class="card-container">
@@ -33,26 +32,10 @@
                     <div class="card-body" >
                         <p class="card-text">{{ farmer[1] }} {{ farmer[2] }}, {{ farmer[3] }}</p>
                     </div>
-                    <!--<div class="front">
-                        <img src="{{url_for('static', filename=farmer[10])}}">
-                        <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
-                        <h1>Age: {{ farmer[3] }}</h1>
-                        <p>Plants: {{ farmer[6]|upper }} </p>
-                    </div>-->
-                    <!--
-                    <div class="back">
-                        <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
-                        <p>{{ farmer[4] }}</p>
-                        <p>Phone: {{ farmer[5] }}</p>
-                        <p>Tools: {{ farmer[8] }}</p>
-                        <p>Chemicals: {{ farmer[9] }}</p>
-                    </div>
-                    -->
                 </div>
             </div>
-            <!--$('.card-container').hide();-->
-            <!--$('#info{{ farmer[0] }}').css('visibility', 'visible');-->
         {% endfor %}
     </div>
-
+</body>
 {% endblock %}
+</html>
