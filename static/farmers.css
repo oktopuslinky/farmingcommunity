@@ -2,6 +2,15 @@ body{
     background-color:lightgray;
 }
 
+.info{
+    background-color:mintcream;
+    padding: 10px;
+    margin: auto;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
+
 .card-container{
     display:inline-block;
 }
@@ -9,6 +18,7 @@ body{
 .card{
     width: 200px;
     opacity: 0.7;
+    display:inline-block;
 }
 
 .card:hover{

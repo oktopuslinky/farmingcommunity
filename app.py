@@ -28,7 +28,7 @@ def login_required(f):
         else:
             return redirect(url_for('login'))
     return wrap
-
+    
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -103,6 +103,7 @@ def needs():
     return render_template('needs.html', needs=data)
 
 @app.route('/createneed', methods=['GET', 'POST'])
+@login_required
 def createneed():
     if request.method == 'POST':
         g.db = connect_db()
