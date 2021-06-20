@@ -102,7 +102,45 @@ def needs():
     print(data)
     return render_template('needs.html', needs=data)
 
+@app.route('/deleteneed', methods=['GET', 'POST'])
+@login_required
+def deleteneed():
+    g.db = connect_db()
+    cur = g.db.execute(
+        '''
+        SELECT * FROM needs
+        WHERE farmer_id=?
+        ''', [session['id']]
+    )
+    data = cur.fetchall()
+    print("current needs:", data)
+    if request.method == 'POST':
+        g.db.execute(
+            '''
+            DELETE FROM needs
+            WHERE need_id=?
+            ''', [request.form['get_id']]
+        )
+        g.db.commit()
+        return redirect(url_for('dashboard'))
+
+    return render_template('deleteneed.html', user_needs=data)
+
+@app.route('/myneeds')
+@login_required
+def myneeds():
+    g.db = connect_db()
+    cur = g.db.execute(
+        '''
+        SELECT * FROM needs
+        WHERE farmer_id=?
+        ''', [session['id']]
+    )
+    data = cur.fetchall()
+    return render_template('myneeds.html', my_needs=data)
+
 @app.route('/createneed', methods=['GET', 'POST'])
+@login_required
 def createneed():
     if request.method == 'POST':
         g.db = connect_db()

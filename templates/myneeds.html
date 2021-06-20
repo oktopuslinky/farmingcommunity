@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Needs</h1>
+    <!--INSERT PAGE CONTENT HERE-->
+    {% for need in needs %}
+        <p>need id: {{ need[0] }}</p>
+        <p>need text: {{ need[1] }}</p>
+        <p>farmer id: {{ need[2] }}</p>
+    {% endfor %}
+{% endblock %}

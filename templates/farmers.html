@@ -12,8 +12,23 @@
 
     <div class="container">
         {% for farmer in farmers %}
+
+            
+
+            <div id="info{{ farmer[0] }}" class='info'>
+                <p>E-Mail: {{ farmer[4] }}</p>
+                <p>Phone Number: {{ farmer[5] }}</p>
+                <p>Plants: {{ farmer[6] }}</p>
+                <p>Seeds: {{ farmer[7] }}</p>
+                <p>Tools: {{ farmer[8] }}</p>
+                <p>Chemicals: {{ farmer[9] }}</p>
+            </div>
+            <script>
+                console.log('hello')
+                $('#info{{ farmer[0] }}').hide();
+            </script>
             <div class="card-container">
-                <div class="card" id="{{ farmer[0] }}">
+                <div class="card" id="{{ farmer[0] }}" onclick="$('.card-container').hide(); $('#info{{ farmer[0] }}').show(); ">
                     <img class="card-img-top" src="{{url_for('static', filename=farmer[10])}}">
                     <div class="card-body" >
                         <p class="card-text">{{ farmer[1] }} {{ farmer[2] }}, {{ farmer[3] }}</p>
@@ -35,6 +50,8 @@
                     -->
                 </div>
             </div>
+            <!--$('.card-container').hide();-->
+            <!--$('#info{{ farmer[0] }}').css('visibility', 'visible');-->
         {% endfor %}
     </div>
 
