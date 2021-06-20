@@ -126,6 +126,19 @@ def deleteneed():
 
     return render_template('deleteneed.html', user_needs=data)
 
+@app.route('/myneeds')
+@login_required
+def myneeds():
+    g.db = connect_db()
+    cur = g.db.execute(
+        '''
+        SELECT * FROM needs
+        WHERE farmer_id=?
+        ''', [session['id']]
+    )
+    data = cur.fetchall()
+    return render_template('myneeds.html', my_needs=data)
+
 @app.route('/createneed', methods=['GET', 'POST'])
 @login_required
 def createneed():
