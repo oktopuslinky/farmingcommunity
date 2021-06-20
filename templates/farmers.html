@@ -7,19 +7,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="static/farmers.css">
-    </head>>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
 
     <div class="container">
         {% for farmer in farmers %}
             <div class="card-container">
                 <div class="card" id="{{ farmer[0] }}">
-                    <div class="front">
+                    <img class="card-img-top" src="{{url_for('static', filename=farmer[10])}}">
+                    <div class="card-body" >
+                        <p class="card-text">{{ farmer[1] }} {{ farmer[2] }}, {{ farmer[3] }}</p>
+                    </div>
+                    <!--<div class="front">
                         <img src="{{url_for('static', filename=farmer[10])}}">
-                        <p>FILENAME: {{ farmer[10] }}</p>
                         <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
                         <h1>Age: {{ farmer[3] }}</h1>
                         <p>Plants: {{ farmer[6]|upper }} </p>
-                    </div>
+                    </div>-->
+                    <!--
                     <div class="back">
                         <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
                         <p>{{ farmer[4] }}</p>
@@ -27,8 +32,10 @@
                         <p>Tools: {{ farmer[8] }}</p>
                         <p>Chemicals: {{ farmer[9] }}</p>
                     </div>
+                    -->
                 </div>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
