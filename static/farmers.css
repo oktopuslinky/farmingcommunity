@@ -2,14 +2,6 @@ body{
     background:linear-gradient(45deg,#3bcc47, #c6e63a);
 }
 
-.info{
-    background-color: rgba(17, 166, 224, 0.781);
-    padding: 10px;
-    margin: auto;
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-}
 
 .card-container{
     display:inline-block;
@@ -18,9 +10,12 @@ body{
 .card{
     position: relative;
     margin: 20px;   
-    width: 180px;
+    height: 300px;
+    width: 300px;
     opacity: 0.8;
     display:inline-block;
+    background: rgb(236, 238, 120);
+    border-radius: 25px;
 }
 
 .card:hover{
@@ -30,17 +25,21 @@ body{
 }
 
 .card-body{
-    margin: 20px;
-    padding-top: 20px;
+    margin: 50px;
+    padding: 10px;
     text-align:center;
-    background-color:green;
+    background-color:rgb(14, 94, 212);
     color:white;
-    padding-top: 5px;
-    padding-bottom: 5px
+    height: 15%;
+    width: 68%;
+    padding-bottom: 5px;
+    border-radius: 25px;
 }
 
 .card-img-top{
-    padding: 10px;
-    min-height: 140px;
-    max-height: 140px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    height: 60%;
+    width: 100%;
 }
