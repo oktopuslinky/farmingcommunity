@@ -1,12 +1,25 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
 
-{% block content %}
-    <!--INSERT PAGE CONTENT HERE-->
-    <h1>Create a Need</h1>
-    <form action='/createneed' method='POST'>
-        <label for="need_text">What do you need?:</label>
-        <input type="text" id="need_text" name="need_text">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="static/createneed.css">
+</head>
 
-        <input type="submit" value="Create Need">
-    </form>
-{% endblock %}
+<body>
+    <div class="center">
+        <h1>Add A Need To Your List!</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="text" required>
+                <span></span>
+                <label>Need</label>
+            </div>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+</body>
+
+</html>
+
