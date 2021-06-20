@@ -1,20 +1,32 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-    <!--INSERT PAGE CONTENT HERE-->
-    <form action="/login" method="POST">
-        <label for="email"><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" name="email" id="email" required>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/login.css">
+    <title>Dashboard</title>
+</head>
 
-        <label for="pw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+<body>
+    {% block content %}
+    <div class="login-box">
+        <h1>Login</h1>
+        <div class="textbox">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Username">
+        </div>
 
-        <input type="submit" value="Login">
-    </form>
-    <p>Don't have an account? <a href='/register'>Register for one today!</a></p>
-    
-    {% if error %}
-        <p><b>The email or password is incorrect. Please try again.</b></p>
-        <!--TODO: MAKE REMEMBER ME BUTTON-->
-    {% endif %}
-{% endblock %}
+        <div class="textbox">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password">
+        </div>
+
+        <input type="button" class="btn" value="Sign in">
+        <input type="button" class="btn" value="Register" href='/register'>
+    </div>
+    {% endblock %}
+
+</body>
+</html>
