@@ -14,8 +14,9 @@
 <body>
     <div class="container">
         {% for farmer in farmers %}
-        
+            <!--<button onlick="$('.card-container').show(); $('#info{{ farmer[0] }}').hide(); ">switch</button>-->
             <div id="info{{ farmer[0] }}" class='info'>
+                <button onclick="$('.card-container').show(); $('#info{{ farmer[0] }}').hide();">switch</button>
                 <p>E-Mail: {{ farmer[4] }}</p>
                 <p>Phone Number: {{ farmer[5] }}</p>
                 <p>Plants: {{ farmer[6] }}</p>
