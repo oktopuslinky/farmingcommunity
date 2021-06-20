@@ -100,6 +100,7 @@ def needs():
     cur = g.db.execute("SELECT * FROM needs")
     data = cur.fetchall()
     print(data)
+
     return render_template('needs.html', needs=data)
 
 @app.route('/deleteneed', methods=['GET', 'POST'])
