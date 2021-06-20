@@ -28,7 +28,7 @@ def login_required(f):
         else:
             return redirect(url_for('login'))
     return wrap
-    
+
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -101,6 +101,30 @@ def needs():
     data = cur.fetchall()
     print(data)
     return render_template('needs.html', needs=data)
+
+@app.route('/deleteneed', methods=['GET', 'POST'])
+@login_required
+def deleteneed():
+    g.db = connect_db()
+    cur = g.db.execute(
+        '''
+        SELECT * FROM needs
+        WHERE farmer_id=?
+        ''', [session['id']]
+    )
+    data = cur.fetchall()
+    print("current needs:", data)
+    if request.method == 'POST':
+        g.db.execute(
+            '''
+            DELETE FROM needs
+            WHERE need_id=?
+            ''', [request.form['get_id']]
+        )
+        g.db.commit()
+        return redirect(url_for('dashboard'))
+
+    return render_template('deleteneed.html', user_needs=data)
 
 @app.route('/createneed', methods=['GET', 'POST'])
 @login_required

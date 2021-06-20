@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!--INSERT PAGE CONTENT HERE-->
+    <h1>Delete a Need</h1>
+    <form action='/deleteneed' method='POST'>
+        {% for need in user_needs %}
+        <!--insert need data (id, description)-->
+        {% endfor %}
+
+        <label for="get_id">Which id need do you need to delete? (input number):</label>
+        <input type="text" id="get_id" name="get_id">
+
+        <input type="submit" value="Delete Need">
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
