@@ -1,9 +1,20 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+{% extends 'base.html' %}
 {% block content %}
+<body style = "padding: 0; margin: 0; background: #f006bd;">
     <!--INSERT PAGE CONTENT HERE-->
-    <p style="font-family:verdana;">You are now logged in and currently in the dashboard</p>
-    <a href='/createneed'><button>Create a Need</button></a>
-    <a href='/deleteneed'><button>Delete a Need</button></a>
-    <a href='/myneeds'><button>My needs</button></a>
+    <h1 style = "font-size: 3em; margin: 50px;padding: 0;text-align: center;font-family: Arial, Helvetica, sans-serif;">Welcome, {{ data[1] }} {{ data[2] }}!</h1>
+</body>
 {% endblock %}
+
+</html>
