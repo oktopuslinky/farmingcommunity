@@ -14,7 +14,8 @@
             <div class="card-container">
                 <div class="card" id="{{ farmer[0] }}">
                     <div class="front">
-                        <img src="https://i.pinimg.com/originals/a6/da/c0/a6dac0ea4408678374bf05cb43643008.jpg">
+                        <img src="{{url_for('static', filename=farmer[10])}}">
+                        <p>FILENAME: {{ farmer[10] }}</p>
                         <h1>{{ farmer[1] }} {{ farmer[2] }}</h1>
                         <h1>Age: {{ farmer[3] }}</h1>
                         <p>Plants: {{ farmer[6]|upper }} </p>

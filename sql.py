@@ -2,7 +2,7 @@ import sqlite3
 with sqlite3.connect("farmers.db") as connection:
     c = connection.cursor()
 
-    #c.execute('DROP TABLE farmers_list')
+    c.execute('DROP TABLE farmers_list')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS farmers_list(
@@ -15,13 +15,23 @@ with sqlite3.connect("farmers.db") as connection:
             plants TEXT,
             seeds TEXT,
             tools TEXT,
-            chemicals TEXT
+            chemicals TEXT,
+            picture TEXT
         )
         '''
     );
 
+    """
+    c.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS photos(
+            photo BLOB
+        )
+        '''
+    )
+    """
     #c.execute('INSERT INTO logins VALUES("1", "johnsmith@hotmail.com", "admin")');
-    #c.execute('DROP TABLE logins')
+    c.execute('DROP TABLE logins')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS logins(
@@ -32,6 +42,7 @@ with sqlite3.connect("farmers.db") as connection:
         '''
     );
 
+    c.execute('DROP TABLE needs')
     c.execute(
         '''
         CREATE TABLE IF NOT EXISTS needs(

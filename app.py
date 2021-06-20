@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash, g, jsonify
 from functools import wraps
 import sqlite3, cgi, cgitb, json, os
+from werkzeug.utils import secure_filename
 
 '''
 TODO:
@@ -8,12 +9,16 @@ TODO:
 - give needs data
 '''
 
+UPLOAD_FOLDER = './static'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
 app = Flask(__name__)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.database='farmers.db'
 
 app.secret_key = "opfasidn43rw908c"
-
 
 def login_required(f):
     @wraps(f)
@@ -23,6 +28,52 @@ def login_required(f):
         else:
             return redirect(url_for('login'))
     return wrap
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload_file', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        g.db = connect_db()
+        cur = g.db.execute('SELECT * FROM logins')
+        data = cur.fetchall()
+
+        reg_farmer_id=data[-1][0]
+
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        print("filename:", file.filename)
+        mimetype=file.mimetype
+        mimetype = mimetype.replace('image/', '')
+        print("mime:", mimetype)
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return render_template('upload_file.html')
+        if file and allowed_file(file.filename):
+            filename = secure_filename(str(reg_farmer_id)+'.'+str(mimetype))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+            g.db.execute(
+                '''
+                UPDATE farmers_list
+                SET picture = ?
+                WHERE farmer_id = ?;
+                ''', [filename, reg_farmer_id]
+            )
+            g.db.commit()
+
+            return redirect(url_for('login'))
+    else:
+        print('method was get.')
+
+    return render_template('upload_file.html')
 
 def connect_db():
     return sqlite3.connect(app.database)
@@ -163,7 +214,7 @@ def register():
                     request.form['plants'],
                     request.form['seeds'],
                     request.form['tools'],
-                    request.form['chemicals'],
+                    request.form['chemicals']
                 ]
             )
             g.db.execute(
@@ -178,15 +229,18 @@ def register():
             the_data = the_cur.fetchall()
             print(the_data)
 
-            return redirect(url_for('login'))
+            return redirect(url_for('upload_file'))
 
     return render_template('register.html')
 
 
 
 #ignore all of this, it is just testing.
-@app.route('/testing')
+@app.route('/testing', methods=['GET', 'POST'])
 def testing():
+    if request.method == 'POST':
+        print('hihi')
+        print(request.files['file'])  
     return render_template('testing.html')
 ###
 
