@@ -172,31 +172,35 @@ def createneed():
 #need to make "welcome, {{name}}"
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error=None
-    if request.method == 'POST':
-        g.db = connect_db()
-        cur = g.db.execute('SELECT * FROM logins')
-        data = cur.fetchall()
-        print(data)
-        login_valid = False
-        farmer_id = None
+    if 'logged_in' in session:
+        flash("You are already logged in. You will now be redirected to the dashboard.")
+        return redirect(url_for('dashboard'))
+    else:
+        error=None
+        if request.method == 'POST':
+            g.db = connect_db()
+            cur = g.db.execute('SELECT * FROM logins')
+            data = cur.fetchall()
+            print(data)
+            login_valid = False
+            farmer_id = None
 
-        for farmer in data:
-            if farmer[1] == request.form['email'] and farmer[2] == request.form['password']:
-                login_valid = True
-                farmer_id = farmer[0]
-                print(farmer_id)
+            for farmer in data:
+                if farmer[1] == request.form['email'] and farmer[2] == request.form['password']:
+                    login_valid = True
+                    farmer_id = farmer[0]
+                    print(farmer_id)
 
-        if login_valid is False:
-            #if login incorrect
-            error = 'Your email or password is incorrect. Please try again.'
-        else:
-            #if login correct
-            session['id'] = farmer_id
-            session['logged_in'] = True
-            return redirect(url_for('dashboard'))
+            if login_valid is False:
+                #if login incorrect
+                error = 'Your email or password is incorrect. Please try again.'
+            else:
+                #if login correct
+                session['id'] = farmer_id
+                session['logged_in'] = True
+                return redirect(url_for('dashboard'))
 
-    return render_template('login.html', error=error)
+        return render_template('login.html', error=error)
 
 
 @app.route('/dashboard')
