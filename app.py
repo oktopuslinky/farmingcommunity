@@ -202,7 +202,11 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    g.db = connect_db()
+    cur = g.db.execute('SELECT * FROM farmers_list WHERE farmer_id=?',[session['id']])
+    data = cur.fetchall()
+    print(data)
+    return render_template('dashboard.html', data=data)
 
 @app.route('/logout')
 def logout():
